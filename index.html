@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    * { box-sizing: border-box;
+      font-family: Manrope; }
+
+.custom-select-box-button {
+ 
+  display: block;
+  width: 564px;
+  height: 50px;
+  padding-top: 11px;
+    padding-left: 14px;
+  margin: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid  #06CA8C;
+  background:#FFF;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M18 9L12 15L6 9' stroke='%2306CA8C' stroke-width='2'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 24px;
+      /* Adjust as needed */
+      background-position: 98% center;
+      
+
+}
+
+.custom-select-box-button:hover {
+  cursor: pointer;
+  background:#06CA8C;
+  color: #FFF;
+}
+
+.custom-select-box-options {
+  display: none;
+  list-style: none;
+  margin: 5px 10px 10px;
+  padding: 0;
+ 
+ 
+}
+
+.custom-select-box-options li {
+  
+  font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  display: flex;
+ 
+}
+.custom-select-box-options li a{
+ align-self: center;
+ 
+}
+svg{
+  stroke: #06CA8C;
+  margin-left: 20px;
+}
+.custom-select-box-options li:hover {
+  cursor: pointer;
+   background:#06CA8C;
+   color: white;
+   border-radius: 5px;
+   
+}
+.white{
+  stroke:white;
+}
+
+.custom-select-box-options li:first-child {
+  color: #cacaca;
+}
+
+.custom-select-box-options li a {
+  display: block;
+  width: 100%;
+  padding: 7px;
+}
+.border{
+  width: 564px;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+}
+.inner-border{
+  width: 100%;
+  padding: 20px 40px;
+}
+  </style>
+</head>
+<body>
+  <div id="custom-select-1" class="custom-select-box" >
+   
+
+    
+    <a class="custom-select-box-button" data-select-value="no-selection" >
+      <span>Select an option...</span>
+    </a>
+    
+    <ul class="custom-select-box-options" >
+     <div class="border">
+
+     <div class="inner-border">
+
+     
+      <li><a data-select-value="no-selection" >Select an option...</a></li>
+      <li><span><svg class="myCircle" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 27L27 18L18 9"  stroke-width="2"/>
+  <path d="M9 27L18 18L9 9"  stroke-width="2"/>
+</svg></span><a data-select-value="first-item" >Auto Loan</a></li>
+      <li><span><svg class="myCircle" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 27L27 18L18 9"  stroke-width="2"/>
+  <path d="M9 27L18 18L9 9"  stroke-width="2"/>
+</svg></span><a data-select-value="second-item" >Study Loan</a></li>
+      <li><span><svg class="myCircle" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 27L27 18L18 9"  stroke-width="2"/>
+  <path d="M9 27L18 18L9 9"  stroke-width="2"/>
+</svg></span><a data-select-value="third-item" >Debt Loan</a></li>
+      <li><span><svg class="myCircle" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 27L27 18L18 9"  stroke-width="2"/>
+  <path d="M9 27L18 18L9 9"  stroke-width="2"/>
+</svg></span><a data-select-value="fifth-item" >House Loan</a></li>
+      <li><span><svg class="myCircle" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 27L27 18L18 9"  stroke-width="2"/>
+  <path d="M9 27L18 18L9 9"  stroke-width="2"/>
+</svg></span><a data-select-value="sixth-item" >Others</a></li>
+    </ul>
+  </div>
+  </div>
+  </div>
+</body>
+<script>
+  var selectToggleOptions = function(e) {
+  e.preventDefault();
+  var selectBox = $(this);
+  var options = selectBox.next('.custom-select-box-options');
+  
+  options.toggle();
+}
+
+var selectSwap = function(e) {
+  e.preventDefault();
+  
+  // Store the elements
+  var listItem = $(this);
+  var listItemParent = listItem.parent().parent().parent().parent();
+  var selectBoxButton = listItemParent.prev('.custom-select-box-button');
+  var selectBoxSpan = selectBoxButton.children('span');
+  
+  // Store the current values
+  var currentText = selectBoxSpan.text();
+  var currentValue = selectBoxButton.data('selectValue');
+  
+  // Store the new values
+  var newText = listItem.text();
+  var newValue = listItem.data('selectValue');
+  
+  if(currentText != newText) {
+    selectBoxSpan.empty().text(newText);
+  }
+  
+  if(currentValue != newValue) {
+    selectBoxButton.attr('data-select-value', newValue);
+  }
+  
+  listItemParent.toggle();
+  
+}
+
+$('.custom-select-box-button').click(selectToggleOptions);
+$('.custom-select-box-options li a').click(selectSwap);
+
+
+// Get the SVG element and the list items by their IDs
+const svgElements = document.querySelectorAll(".myCircle");
+const listItems = document.querySelectorAll("li");
+
+// Function to add the "white" class to the SVG element
+
+function addWhiteClass() {
+  const index = (Array.from(listItems).indexOf(event.target))-1;
+  if (index >= 0 && index < (svgElements.length)+1) {
+    svgElements[index].classList.add("white");
+  }
+}
+
+// Function to remove the "white" class from the SVG element
+function removeWhiteClass() {
+svgElements.forEach((element) => {
+    element.classList.remove("white");
+  });
+}
+
+// Add hover event listeners to each list item
+listItems.forEach((item) => {
+  item.addEventListener("mouseenter", addWhiteClass);
+  item.addEventListener("mouseleave", removeWhiteClass);
+});
+
+</script>
+</html>
